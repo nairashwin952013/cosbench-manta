@@ -55,7 +55,7 @@
     </distributionManagement>
 
     <properties>
-        <java.min.version>1.8</java.min.version>
+        <java.min.version>11</java.min.version>
         <maven.min.version>3.2</maven.min.version>
         <maven.test.skip>false</maven.test.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -65,7 +65,7 @@
         <surefire.forkCount>1</surefire.forkCount>
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-bundle-plugin.version>4.2.0</maven-bundle-plugin.version>
+        <maven-bundle-plugin.version>4.2.1</maven-bundle-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
         <maven-extra-enforcer-rules.version>1.2</maven-extra-enforcer-rules.version>
         <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
@@ -86,7 +86,7 @@
         <dependency.checkstyle.version>8.31</dependency.checkstyle.version>
         <dependency.java-manta.version>3.4.4-SNAPSHOT</dependency.java-manta.version>
         <dependency.slf4j-log4j12.version>1.7.29</dependency.slf4j-log4j12.version>
-        <dependency.osgi4.version>1.0</dependency.osgi4.version>
+        <dependency.osgi4.version>7.0.0</dependency.osgi4.version>
         <dependency.cosbench.version>0.4.1.0</dependency.cosbench.version>
         <dependency.testng.version>6.14.3</dependency.testng.version>
         <dependency.commons-lang.version>3.10</dependency.commons-lang.version>
@@ -135,7 +135,7 @@
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
-            <artifactId>osgi_R4_core</artifactId>
+            <artifactId>osgi.core</artifactId>
             <version>${dependency.osgi4.version}</version>
             <scope>provided</scope>
             <optional>true</optional>
@@ -175,6 +175,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <_fixupmessages>"Classes found in the wrong directory";is:=warning</_fixupmessages>
                         <Bundle-Name>Manta Storage Client Bundle</Bundle-Name>
                         <Bundle-Vendor>Joyent</Bundle-Vendor>
                         <Bundle-SymbolicName>cosbench-manta</Bundle-SymbolicName>
@@ -191,7 +192,7 @@
                         <!-- We intentionally don't include the JDK version here because
                              the version of OSGI in which COSBench is running doesn't have
                              a JDK 1.8 profile. -->
-                        <Require-Capability>osgi.ee;filter:="(&amp;(osgi.ee=JavaSE))"</Require-Capability>
+                        <Require-Capability>osgi.ee;filter:="(&amp;(osgi.ee=JavaSE-11))"</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>
